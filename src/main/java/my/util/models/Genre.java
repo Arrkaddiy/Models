@@ -1,33 +1,33 @@
-package my.util.Models;
+package my.util.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "albums")
-public class Artist {
+@Table(name = "genres")
+public class Genre {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ArtistId", nullable = false)
-    private Integer artistId;
+    @JoinColumn(name = "GenreId", nullable = false)
+    private Integer genreid;
 
     @Column(name = "Name", length = 120)
     private String name;
 
-    public Artist() {
+    public Genre() {
     }
 
-    public Artist(String name) {
+    public Genre(String name) {
         this.name = name;
     }
 
-    public Integer getArtistId() {
-        return artistId;
+    public Integer getGenreid() {
+        return genreid;
     }
 
-    public void setArtistId(Integer artistId) {
-        this.artistId = artistId;
+    public void setGenreid(Integer genreid) {
+        this.genreid = genreid;
     }
 
     public String getName() {

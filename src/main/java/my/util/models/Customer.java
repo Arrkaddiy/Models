@@ -1,36 +1,25 @@
-package my.util.Models;
+package my.util.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
-@Table(name = "employees")
-public class Employee {
+@Table(name = "customers")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "EmployeeId", nullable = false)
-    private Integer employeeid;
+    @JoinColumn(name = "CustomerId", nullable = false)
+    private Integer customerid;
+
+    @Column(name = "FirstName", length = 40, nullable = false)
+    private String firstname;
 
     @Column(name = "LastName", length = 20, nullable = false)
     private String lastname;
 
-    @Column(name = "FirstName", length = 20, nullable = false)
-    private String firstname;
-
-    @Column(name = "Title", length = 30)
-    private String title;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ReportsTo")
-    private Employee reportsto;
-
-    @Column(name = "BirthDate")
-    private Date birthdate;
-
-    @Column(name = "HireDate")
-    private Date hiredate;
+    @Column(name = "Company", length = 80)
+    private String company;
 
     @Column(name = "Address", length = 70)
     private String address;
@@ -56,27 +45,27 @@ public class Employee {
     @Column(name = "Email", length = 60)
     private String email;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "SupportRepId")
+    private Employee supportrepid;
+
     @Column(name = "Password", length = 40)
     private String password;
 
     @Column(name = "Active")
     private boolean active;
 
-    public Employee() {
+    public Customer(){
     }
 
-    public Employee(String lastname, String firstname, String title,
-                    Employee reportsto, Date birthdate, Date hiredate,
+    public Customer(String firstname, String lastname, String company,
                     String address, String city, String state, String country,
                     String postalcode, String phone, String fax, String email,
-                    String password, boolean active) {
+                    Employee supportrepid, String password, boolean active) {
 
-        this.lastname = lastname;
         this.firstname = firstname;
-        this.title = title;
-        this.reportsto = reportsto;
-        this.birthdate = birthdate;
-        this.hiredate = hiredate;
+        this.lastname = lastname;
+        this.company = company;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -85,24 +74,17 @@ public class Employee {
         this.phone = phone;
         this.fax = fax;
         this.email = email;
+        this.supportrepid = supportrepid;
         this.password = password;
         this.active = active;
     }
 
-    public Integer getEmployeeid() {
-        return employeeid;
+    public Integer getCustomerid() {
+        return customerid;
     }
 
-    public void setEmployeeid(Integer employeeid) {
-        this.employeeid = employeeid;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setCustomerid(Integer customerid) {
+        this.customerid = customerid;
     }
 
     public String getFirstname() {
@@ -113,36 +95,20 @@ public class Employee {
         this.firstname = firstname;
     }
 
-    public String getTitle() {
-        return title;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public Employee getReportsto() {
-        return reportsto;
+    public String getCompany() {
+        return company;
     }
 
-    public void setReportsto(Employee reportsto) {
-        this.reportsto = reportsto;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public Date getHiredate() {
-        return hiredate;
-    }
-
-    public void setHiredate(Date hiredate) {
-        this.hiredate = hiredate;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getAddress() {
@@ -207,6 +173,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Employee getSupportrepid() {
+        return supportrepid;
+    }
+
+    public void setSupportrepid(Employee supportrepid) {
+        this.supportrepid = supportrepid;
     }
 
     public String getPassword() {

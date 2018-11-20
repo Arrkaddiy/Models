@@ -1,33 +1,33 @@
-package my.util.Models;
+package my.util.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "media_types")
-public class MediaType {
+@Table(name = "albums")
+public class Artist {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "MediaTypeId", nullable = false)
-    private Integer mediatypeid;
+    @JoinColumn(name = "ArtistId", nullable = false)
+    private Integer artistId;
 
     @Column(name = "Name", length = 120)
     private String name;
 
-    public MediaType() {
+    public Artist() {
     }
 
-    public MediaType(String name) {
+    public Artist(String name) {
         this.name = name;
     }
 
-    public Integer getMediatypeid() {
-        return mediatypeid;
+    public Integer getArtistId() {
+        return artistId;
     }
 
-    public void setMediatypeid(Integer mediatypeid) {
-        this.mediatypeid = mediatypeid;
+    public void setArtistId(Integer artistId) {
+        this.artistId = artistId;
     }
 
     public String getName() {
